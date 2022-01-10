@@ -85,7 +85,8 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add --no-cache curl
+            #apk add --no-cache curl
+            apk --upgrade --no-cache add curl
             apk add --no-cache \
               py-pip=9.0.0-r1
             pip install \
@@ -124,7 +125,7 @@ jobs:
             export url="http://localhost:80"
             export response=$(curl -s $url)
             echo "This is response $response"
-            if [[ $response == *"Hello"* ]]; then              
+            if [[ $response == "Hello" ]]; then              
               docker stop app_web_1
             else              
               docker stop app_web_1

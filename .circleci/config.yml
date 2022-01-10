@@ -113,10 +113,11 @@ jobs:
           key: v1-{{ .Branch }}-{{ epoch }}
           paths:
             - /caches/app.tar
-      #- run:
-      #    name: Run tests
-      #    command: |
-      #      docker-compose -f ./docker-compose.test.yml up
+      - run:
+          name: Run tests
+          command: |
+            docker-compose -f ./docker-compose.test.yml up
+            wget localhost:80
       #- deploy:
       #    name: Push application Docker image
       #    command: |

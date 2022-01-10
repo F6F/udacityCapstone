@@ -117,8 +117,17 @@ jobs:
           name: Run tests
           command: |
             docker --version
-            docker-compose -f ./docker-compose.test.yml up
-            wget localhost:80
+            docker-compose -f ./docker-compose.test.yml up -d
+            sleep 30
+            docker ps
+            export url="http://localhost:80"
+            export response=$(curl -s $url)
+            echo "This is response $response"
+            if [[ $response == *"Hello"* ]]; then              
+              docker stop app_web_1
+            else              
+              docker stop app_web_1
+            fi
       #- deploy:
       #    name: Push application Docker image
       #    command: |

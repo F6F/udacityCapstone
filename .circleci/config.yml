@@ -52,6 +52,7 @@ jobs:
           name: run lint
           command: |
             . venv/bin/activate
+            ls
             make lint 
 
 workflows:

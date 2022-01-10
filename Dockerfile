@@ -19,8 +19,6 @@ RUN pip install --no-cache-dir --upgrade pip &&\
 ## Step 2:
 # Copy source code to working directory
 copy ./app.py /app/
-#copy ./requirements.txt /app/
-copy ./model_data /app/model_data/
 
 ## Step 4:
 # Expose port 80

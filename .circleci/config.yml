@@ -31,6 +31,7 @@ jobs:
       - save_cache:
           paths:
             - ./venv
+            - ./bin/hadolint
           key: v1-dependencies-{{ checksum "requirements.txt" }}
 
   lint:

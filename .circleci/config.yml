@@ -4,7 +4,7 @@
 #
 version: 2.1
 jobs:
-  createEnv:
+  createenv:
     working_directory: ~/udacitiy-capstone
     docker:
     # Use the same Docker base as the project
@@ -75,7 +75,7 @@ jobs:
             . venv/bin/activate
             make dockerlint 
 
-  buildDocker:
+  builddocker:
     working_directory: ~/udacitiy-capstone
     docker:
       - image: docker:17.05.0-ce-git
@@ -130,10 +130,10 @@ jobs:
 workflows:
   default:
     jobs:
-      - createEnv
+      - createenv
       - pylint:
-          requires: [createEnv]
+          requires: [createenv]
       - dockerlint:
-          requires: [createEnv]
-      - buildDocker
-          requires: [createEnv]
+          requires: [createenv]
+      - builddocker:
+          requires: [createenv]

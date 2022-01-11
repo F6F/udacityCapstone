@@ -119,17 +119,17 @@ jobs:
           name: Run tests
           command: |
             docker --version
-            docker-compose -f ./docker-compose.test.yml up -d
-            sleep 4m
-            docker ps
-            export url="http://localhost:8080"
-            export response=$(curl -s $url)
-            echo "This is response $response"
-            if [[ $response == "Hello" ]]; then              
-              docker stop app_web_1
-            else              
-              docker stop app_web_1
-            fi
+            #docker-compose -f ./docker-compose.test.yml up -d
+            #sleep 4m
+            #docker ps
+            #export url="http://localhost:8080"
+            #export response=$(curl -s $url)
+            #echo "This is response $response"
+            #if [[ $response == "Hello" ]]; then              
+            #  docker stop app_web_1
+            #else              
+            #  docker stop app_web_1
+            #fi
       - run:
           name: Push application Docker image
           command: |

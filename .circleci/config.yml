@@ -134,10 +134,10 @@ jobs:
           name: Push application Docker image
           command: |
             if [ "${CIRCLE_BRANCH}" == "main" ]; then
-              login="$(aws ecr get-login)"
+              login="$(aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws)"
               ${login}
-              docker tag app "049928531231.dkr.ecr.eu-central-1.amazonaws.com/uda-repo:${CIRCLE_SHA1}"
-              docker push "049928531231.dkr.ecr.eu-central-1.amazonaws.com/uda-repo:${CIRCLE_SHA1}"
+              docker tag app "public.ecr.aws/s1k2x6c2/myapp:${CIRCLE_SHA1}"
+              docker push "public.ecr.aws/s1k2x6c2/myapp:${CIRCLE_SHA1}"
             fi
 
 workflows:

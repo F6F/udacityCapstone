@@ -136,8 +136,8 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "main" ]; then
               login="$(aws ecr get-login)"
               ${login}
-              docker tag app "public.ecr.aws/s1k2x6c2/myapp:testapp"
-              docker push "public.ecr.aws/s1k2x6c2/myapp:testapp"
+              docker tag app "049928531231.dkr.ecr.eu-central-1.amazonaws.com/uda-repo:testapp"
+              docker push "049928531231.dkr.ecr.eu-central-1.amazonaws.com/uda-repo:testapp"
             fi
 
 workflows:

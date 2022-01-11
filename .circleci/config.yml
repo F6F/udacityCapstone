@@ -122,7 +122,6 @@ jobs:
             docker-compose -f ./docker-compose.test.yml up -d
             sleep 4m
             docker ps
-            curl -o - http://localhost:8080 
             export url="http://localhost:8080"
             export response=$(curl -s $url)
             echo "This is response $response"
@@ -131,15 +130,15 @@ jobs:
             else              
               docker stop app_web_1
             fi
-      #- deploy:
-      #    name: Push application Docker image
-      #    command: |
-      #      if [ "${CIRCLE_BRANCH}" == "master" ]; then
-      #        login="$(aws ecr get-login)"
-      #        ${login}
-      #        docker tag app "${ECR_ENDPOINT}/app:${CIRCLE_SHA1}"
-      #        docker push "${ECR_ENDPOINT}/app:${CIRCLE_SHA1}"
-      #      fi
+      - run:
+          name: Push application Docker image
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              login="$(aws ecr get-login)"
+              ${login}
+              docker tag app "public.ecr.aws/s1k2x6c2/myapp:${CIRCLE_SHA1}"
+              docker push "public.ecr.aws/s1k2x6c2/myapp:${CIRCLE_SHA1}"
+            fi
 
 workflows:
   default:

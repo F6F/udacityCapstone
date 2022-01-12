@@ -1,7 +1,9 @@
-version: '2.1'
+version: 2.1
+
 orbs:
-  aws-eks: circleci/aws-eks@2.1.0
-  kubernetes: circleci/kubernetes@1.0
+  aws-eks: circleci/aws-eks@1.0.0
+  kubernetes: circleci/kubernetes@0.11.1
+  
 jobs:
   test-cluster:
     executor: aws-eks/python3
@@ -18,16 +20,17 @@ jobs:
           command: |
             kubectl get services
           name: Test cluster
+
 workflows:
   deployment:
     jobs:
       - aws-eks/create-cluster:
-          cluster-name: my-eks-demo
+          cluster-name: my-first-cluster
       - test-cluster:
-          cluster-name: my-eks-demo
+          cluster-name: my-first-cluster
           requires:
             - aws-eks/create-cluster
       - aws-eks/delete-cluster:
-          cluster-name: my-eks-demo
+          cluster-name: my-first-cluster
           requires:
             - test-cluster

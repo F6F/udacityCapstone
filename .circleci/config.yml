@@ -5,8 +5,8 @@
 version: 2.1
 
 orbs:
-  #aws-eks: circleci/aws-eks@1.1.0s
-  aws-eks: circleci/aws-eks@dev:alpha
+  aws-eks: circleci/aws-eks@2.1.0
+  #aws-eks: circleci/aws-eks@dev:alpha
   kubernetes: circleci/kubernetes@0.12.0
 
 jobs:
@@ -177,6 +177,7 @@ workflows:
           requires:
             - builddocker
       - test-eks:
+          cluster-name: udacity-capstone-helloWorld
           requires:
             - aws-eks/create-cluster
 

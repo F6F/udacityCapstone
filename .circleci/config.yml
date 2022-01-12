@@ -177,6 +177,5 @@ workflows:
           requires: [builddocker]
       - test-eks:
           cluster-name: udacity-capstone-helloWorld
-          requires:
-            - aws-eks/create-cluster
+          requires: [aws-eks/create-cluster]
 

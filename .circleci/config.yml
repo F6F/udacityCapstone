@@ -195,9 +195,17 @@ jobs:
       - kubernetes/install
       - aws-eks/update-kubeconfig-with-authenticator:
           cluster-name: << parameters.cluster-name >>
+          aws-region:  $AWS_REGION
       - run:
           command: |
-            kubectl get services
+            kubectl get services -o wide
+            kubectl get nodes -o wide
+            kubectl get pods --all-namespaces -o wide
+            kubectl describe pods
+            kubectl get svc
+            kubectl describe configmap -n kube-system aws-auth
+            kubectl get roles --all-namespaces
+            kubectl get deployment
           name: Test cluster
 
 workflows:
@@ -212,7 +220,6 @@ workflows:
           requires: [createenv]
       - create-cluster:
           cluster-name: udacity-capstone-helloWorld
-          requires: [builddocker]
-      #- test-eks:
-      #    cluster-name: udacity-capstone-helloWorld
-      #    requires: [aws-eks/create-cluster]
+      - test-eks:
+          cluster-name: udacity-capstone-helloWorld
+          requires: [create-cluster]

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: eks-capstone-service
+  namespace: eks-capstone-ns
+  labels:
+    app: eks-capstone
+spec:
+  type: LoadBalancer
+  selector:
+    app: eks-capstone
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

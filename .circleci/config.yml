@@ -207,6 +207,34 @@ jobs:
             kubectl get deployment
           name: Test cluster
 
+
+  create-deployment:
+    executor: aws-eks/python3
+    parameters:
+      cluster-name:
+        description: |
+          Name of the EKS cluster
+        type: string
+    steps:
+      - checkout
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: << parameters.cluster-name >>
+          aws-region:  $AWS_REGION
+          install-kubectl: true
+      - kubernetes/create-or-update-resource:
+          resource-file-path: deployment/namespace.yaml
+          show-kubectl-command: true
+      - kubernetes/create-or-update-resource:
+          get-rollout-status: true
+          resource-file-path: deployment/deployment.yaml
+          resource-name: deployment/eks-capstone
+          show-kubectl-command: true
+          namespace: hello-udacity          
+      - kubernetes/create-or-update-resource:
+          resource-file-path: deployment/service.yaml
+          show-kubectl-command: true
+          namespace: hello-udacity
+
 workflows:
   default:
     jobs:
@@ -222,3 +250,6 @@ workflows:
       - test-eks:
           cluster-name: udacitycapstonehelloWorld
           requires: [create-cluster]
+      - create-deployment:
+          requires: [test-eks]
+          

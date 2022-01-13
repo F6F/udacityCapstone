@@ -218,7 +218,7 @@ workflows:
       - builddocker:
           requires: [createenv]
       - create-cluster:
-          cluster-name: udacity-capstone-helloWorld
+          cluster-name: udacitycapstonehelloWorld
       - test-eks:
-          cluster-name: udacity-capstone-helloWorld
+          cluster-name: udacitycapstonehelloWorld
           requires: [create-cluster]

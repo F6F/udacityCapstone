@@ -251,5 +251,6 @@ workflows:
           cluster-name: udacitycapstonehelloWorld
           requires: [create-cluster]
       - create-deployment:
+          cluster-name: udacitycapstonehelloWorld
           requires: [test-eks]
           

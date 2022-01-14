@@ -3,7 +3,7 @@ from flask import Flask
 app = Flask(__name__)
 
 @app.route("/")
-def hello_world()
+def hello_world():
     return "<p>Udacity Capstone project version: 0.0.1</p>"
 
 if __name__ == "__main__":

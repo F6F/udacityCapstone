@@ -9,7 +9,6 @@ workdir /app
 #copy ./app.py /app/
 copy ./requirements.txt /app/
 #copy ./model_data /app/model_data/
-copy
 
 ## Step 3:
 # Install packages from requirements.txt

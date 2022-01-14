@@ -265,6 +265,6 @@ workflows:
             get-rollout-status: true
             resource-name: deployment/eks-capstone
             namespace: eks-capstone-ns
-            requires:
-              - create-deployment
+            #requires:
+            #  - create-deployment
           

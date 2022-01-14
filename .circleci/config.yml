@@ -260,8 +260,8 @@ workflows:
       - aws-eks/update-container-image:
             show-kubectl-command: true 
             cluster-name: eks-capstone 
-            aws-region:  $AWS_REGION
-            container-image-updates: capstone=049928531231.dkr.ecr.eu-central-1.amazonaws.com/uda-repo:latest
+            aws-region:  $AWS_REGION       
+            container-image-updates: capstone=049928531231.dkr.ecr.eu-central-1.amazonaws.com/uda-repo:${CIRCLE_SHA1}
             get-rollout-status: true
             resource-name: deployment/eks-capstone
             namespace: eks-capstone-ns

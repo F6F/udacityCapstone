@@ -140,8 +140,8 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               login="$(aws ecr get-login)"
               ${login}
-              docker tag app "049928531231.dkr.ecr.eu-central-1.amazonaws.com/uda-repo:${CIRCLE_SHA1}"
-              docker push "049928531231.dkr.ecr.eu-central-1.amazonaws.com/uda-repo:${CIRCLE_SHA1}"
+              docker tag app "049928531231.dkr.ecr.eu-central-1.amazonaws.com/uda-repo:testapp"
+              docker push "049928531231.dkr.ecr.eu-central-1.amazonaws.com/uda-repo:testapp"
             fi
   create-cluster:
     executor: aws-eks/python3
@@ -261,7 +261,7 @@ workflows:
             show-kubectl-command: true 
             cluster-name: eks-capstone 
             aws-region:  $AWS_REGION       
-            container-image-updates: capstone=049928531231.dkr.ecr.eu-central-1.amazonaws.com/uda-repo:testapp
+            container-image-updates: capstone=049928531231.dkr.ecr.eu-central-1.amazonaws.com/uda-repo:
             get-rollout-status: true
             resource-name: deployment/eks-capstone
             namespace: eks-capstone-ns

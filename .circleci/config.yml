@@ -224,19 +224,19 @@ jobs:
       - kubernetes/create-or-update-resource:
           resource-file-path: deployment/namespace.yaml
           show-kubectl-command: true
-          watch-timeout: 10m
+          watch-timeout: 15m
       - kubernetes/create-or-update-resource:
           get-rollout-status: true
           resource-file-path: deployment/deployment.yaml
           resource-name: deployment/eks-capstone
           show-kubectl-command: true
           namespace: eks-capstone-ns
-          watch-timeout: 10m
+          watch-timeout: 15m
       - kubernetes/create-or-update-resource:
           resource-file-path: deployment/service.yaml
           show-kubectl-command: true
           namespace: eks-capstone-ns
-          watch-timeout: 10m
+          watch-timeout: 15m
 
 
 workflows:

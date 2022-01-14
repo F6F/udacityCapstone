@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: capstone
-  namespace: hello-udacity
+  name: eks-capstone
+  namespace: eks-capstone-ns
   labels:
     app: eks-capstone
 spec:

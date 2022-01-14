@@ -242,26 +242,26 @@ jobs:
 workflows:
   default:
     jobs:
-      - createenv
-      - pylint:
-          requires: [createenv]
-      - dockerlint:
-          requires: [createenv]
-      - builddocker:
-          requires: [createenv]
-      - create-cluster:
-          cluster-name: eks-capstone
-      - test-eks:
-          cluster-name: eks-capstone
-          requires: [create-cluster]
-      - create-deployment:
-          cluster-name: eks-capstone
-          requires: [test-eks]
+      #- createenv
+      #- pylint:
+      #    requires: [createenv]
+      #- dockerlint:
+      #    requires: [createenv]
+      #- builddocker:
+      #    requires: [createenv]
+      #- create-cluster:
+      #    cluster-name: eks-capstone
+      #- test-eks:
+      #    cluster-name: eks-capstone
+      #    requires: [create-cluster]
+      #- create-deployment:
+      #    cluster-name: eks-capstone
+      #    requires: [test-eks]
       - aws-eks/update-container-image:
             show-kubectl-command: true 
             cluster-name: eks-capstone 
             aws-region:  $AWS_REGION       
-            container-image-updates: capstone=049928531231.dkr.ecr.eu-central-1.amazonaws.com/uda-repo:${CIRCLE_SHA1}
+            container-image-updates: capstone=049928531231.dkr.ecr.eu-central-1.amazonaws.com/uda-repo:testapp
             get-rollout-status: true
             resource-name: deployment/eks-capstone
             namespace: eks-capstone-ns
